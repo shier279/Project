@@ -1,6 +1,7 @@
 import struct
 import threading
 from concurrent.futures import ThreadPoolExecutor
+import time
 
 def sm3_hash(message):
     IV = (0x7380166F, 0x4914B2B9, 0x172442D7, 0xDA8A0600,
