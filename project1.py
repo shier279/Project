@@ -1,5 +1,6 @@
 import random
 import hashlib
+import time
 
 def sm3(text):
     h = hashlib.new('sm3')
