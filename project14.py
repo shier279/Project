@@ -2,6 +2,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
+import time
 
 private_key = rsa.generate_private_key(
     public_exponent=65537,
@@ -29,6 +30,9 @@ decrypted_message = private_key.decrypt(
     )
 )
 
+start = time.perf_counter()
 print("Original message:", message)
 print("Encrypted message:", encrypted_message)
 print("Decrypted message:", decrypted_message)
+end = time.perf_counter()
+print(end - start)
