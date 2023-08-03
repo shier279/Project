@@ -1,0 +1,35 @@
+MPT算法是以太坊中广泛使用的一种数据结构，它被用于存储账户状态和交易状态。MPT算法的主要优点是高效地支持状态更新和查询，同时保证了数据的安全和可靠性。
+
+MPT算法是基于Merkle Tree和Patricia Tree的结合体。Merkle Tree是一种树形结构，它通过哈希函数将多个数据块组合成一个根哈希值，从而实现对数据的快速验证和完整性检查。而
+
+Patricia Tree则是一种基于前缀压缩的树形结构，它通过压缩相同前缀的节点来减少树的深度和存储空间。
+
+MPT算法将Merkle Tree和Patricia Tree结合起来，从而实现了高效的状态更新和查询。具体来说，MPT算法使用哈希函数将所有的状态数据块组合成一个根哈希值，并使用Patricia Tree来
+
+压缩相同前缀的节点。当需要更新或查询某个状态时，MPT算法只需要访问相应的叶子节点，并通过哈希函数验证其完整性即可。
+
+在以太坊中，每个账户都有一个状态树，用于存储其余额和合约代码等信息。当一个交易被执行时，以太坊会更新相应账户的状态树，并将新的状态树根哈希值写入区块链中。这样，每个区块都
+
+包含了所有交易的状态树根哈希值，从而实现了对交易状态的快速验证和完整性检查。
+
+下面为简单实现MPT的python算法：
+
+
+from eth_utils import keccak
+from eth.db.backends.level import LevelDB
+from eth.db.trie import make_trie_root_and_nodes
+
+db = LevelDB('/path/to/db')
+trie = HexaryTrie(db)
+trie[b'key1'] = b'value1'
+value = trie[b'key1']
+print(value)
+trie[b'key1'] = b'value2'
+value = trie[b'key1']
+print(value)
+root_hash, nodes = make_trie_root_and_nodes(trie)
+print(root_hash.hex())
+
+
+
+在这个示例中，首先使用LevelDB类创建了一个数据库对象，并使用HexaryTrie类创建了一个空的MPT树。然后，使用索引操作符[]将一个键值对添加到MPT树中，并使用相同的操作符获取该键对应的值。接着，使用相同的操作符更新了该键对应的值，并再次获取该键对应的新值。最后，使用make_trie_root_and_nodes函数计算了当前MPT树的根哈希值。
