@@ -1,1 +1,4 @@
 # Project
+所有代码均为python
+只需安装对应的库即可
+只有project8需要在ARM芯片下运行或ARM虚拟机
